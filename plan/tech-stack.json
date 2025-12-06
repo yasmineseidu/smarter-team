@@ -1,0 +1,158 @@
+{
+  "generatedDate": "2024-12-05T00:00:00.000Z",
+  "status": "approved",
+  "projectName": "smarter-team",
+  "projectType": "multi_agent_system",
+  "stack": {
+    "backend": {
+      "language": "python",
+      "languageVersion": "3.11+",
+      "agentFramework": {
+        "name": "claude-agent-sdk",
+        "package": "claude-agent-sdk",
+        "version": "latest"
+      },
+      "apiFramework": {
+        "name": "fastapi",
+        "version": "0.115+",
+        "extras": ["uvicorn", "pydantic"]
+      },
+      "taskQueue": {
+        "name": "celery",
+        "version": "5.4+",
+        "broker": "redis",
+        "resultBackend": "redis"
+      }
+    },
+    "database": {
+      "primary": {
+        "name": "supabase",
+        "type": "postgresql",
+        "managed": true,
+        "features": ["realtime", "auth", "storage", "edge_functions"]
+      },
+      "cache": {
+        "name": "upstash",
+        "type": "redis",
+        "managed": true,
+        "features": ["serverless", "global_edge"]
+      },
+      "vector": {
+        "name": "pinecone",
+        "managed": true,
+        "features": ["similarity_search", "hybrid_search", "metadata_filtering"]
+      },
+      "memory": {
+        "name": "zep",
+        "managed": true,
+        "features": ["temporal_knowledge_graph", "session_memory", "long_term_memory"]
+      }
+    },
+    "infrastructure": {
+      "deployment": {
+        "name": "coolify",
+        "type": "self_hosted_paas",
+        "features": ["docker", "zero_downtime", "auto_ssl", "git_integration"]
+      },
+      "containerization": {
+        "name": "docker",
+        "orchestration": "docker_compose"
+      },
+      "ssl": {
+        "provider": "letsencrypt",
+        "autoRenewal": true
+      }
+    }
+  },
+  "agents": [
+    {
+      "name": "lead_generation_agent",
+      "priority": "critical",
+      "integrations": ["instantly", "autobound", "icypeas", "findymail", "serper", "firecrawl"]
+    },
+    {
+      "name": "sales_agent",
+      "priority": "critical",
+      "integrations": ["retell_ai", "pandadoc", "gohighlevel", "cal_com"]
+    },
+    {
+      "name": "project_manager_agent",
+      "priority": "critical",
+      "integrations": ["clickup", "todoist", "notion", "google_calendar"]
+    },
+    {
+      "name": "developer_agent",
+      "priority": "critical",
+      "integrations": ["github", "google_drive"]
+    },
+    {
+      "name": "marketing_agent",
+      "priority": "high",
+      "integrations": ["gamma", "elevenlabs", "fal_ai"]
+    },
+    {
+      "name": "support_agent",
+      "priority": "high",
+      "integrations": ["gmail", "notion"]
+    },
+    {
+      "name": "finance_agent",
+      "priority": "high",
+      "integrations": ["stripe", "quickbooks", "signaturley"]
+    },
+    {
+      "name": "research_agent",
+      "priority": "high",
+      "integrations": ["perplexity", "exa", "brave_search", "news_api", "reddit"]
+    }
+  ],
+  "integrations": {
+    "ai_llm": ["anthropic_claude", "perplexity", "elevenlabs", "retell_ai", "fal_ai", "replicate"],
+    "lead_generation": ["instantly", "autobound", "icypeas", "findymail", "anymailfinder", "tomba", "reoon"],
+    "crm": ["gohighlevel", "notion", "airtable", "clickup", "todoist"],
+    "communication": ["gmail", "google_calendar", "cal_com"],
+    "search": ["serper", "exa", "firecrawl", "brave_search", "reddit", "news_api"],
+    "documents": ["google_drive", "google_sheets", "pandadoc", "signaturley", "gamma"],
+    "payments": ["stripe", "quickbooks"],
+    "infrastructure": ["supabase", "upstash", "pinecone", "zep"]
+  },
+  "perspectives": {
+    "pragmatist": {
+      "score": 7.5,
+      "summary": "Ships in 4-6 weeks. Celery adds complexity but scales better than ARQ."
+    },
+    "performance": {
+      "score": "PASS",
+      "summary": "Webhook response 50-400ms. 5-10GB memory at peak. Scales to 50 clients."
+    },
+    "future": {
+      "score": 7.2,
+      "summary": "All core tools backed by well-funded companies. Zep is the risk (pre-release)."
+    },
+    "devilsAdvocate": {
+      "score": "HIGH_RISK",
+      "summary": "8 services = 8 failure points. Solopreneur ops is challenging."
+    },
+    "maintainer": {
+      "score": 6.5,
+      "summary": "FastAPI + Supabase excellent. Zep + Coolify need monitoring."
+    }
+  },
+  "costs": {
+    "monthly": {
+      "supabase": {"min": 25, "max": 100},
+      "upstash": {"min": 50, "max": 100},
+      "pinecone": {"min": 70, "max": 150},
+      "zep": {"min": 19, "max": 249},
+      "claude_api": {"min": 100, "max": 500},
+      "coolify_vps": {"min": 100, "max": 200},
+      "total": {"min": 364, "max": 1299}
+    }
+  },
+  "timeline": {
+    "phase1_infrastructure": "week_1_2",
+    "phase2_agent_foundation": "week_2_3",
+    "phase3_integrations": "week_3_4",
+    "phase4_full_agents": "week_4_6"
+  }
+}
